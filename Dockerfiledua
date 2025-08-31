@@ -1,0 +1,4 @@
+FROM ubuntu:latest
+LABEL maintainer="rn.putra@gmail.com"
+RUN apt-get update
+CMD [ "echo", "Selamat datang di OS Ubuntu Dengan Docker File Berbeda" ]

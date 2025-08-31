@@ -1,0 +1,11 @@
+#menambahkan image ubuntu pada docker hub
+FROM ubuntu:latest
+LABEL maintainer="rn.putra@gmail.com"
+#update ubuntu
+RUN apt-get update
+#buat direktori roni dalam directori home
+WORKDIR /home/roni
+#buat file log
+RUN echo "Menambahkan direktori roni" > file_log.txt
+#menampilkan teks pada layar
+CMD [ "echo", "Membuat Folder dengan dockerfile" ]

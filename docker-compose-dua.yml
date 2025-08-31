@@ -1,0 +1,44 @@
+services:
+  php:
+    build: ./php
+    container_name: produk-service
+    volumes:
+      - D:\DockerMI3C\php\www:/var/www/html
+    ports:
+      - "8081:80"
+    networks:
+      - network-service
+    restart: always
+
+  nginx:
+    image: nginx
+    container_name: nginx-service
+    ports:
+      - "8082:80"
+    volumes:
+      - D:\DockerMI3C\nginx\www:/usr/share/nginx/html
+
+  mysql:
+    image: mysql
+    container_name: mysql-service
+    environment:
+      MYSQL_DATABASE: "produk_db"
+      MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_TCP_PORT: 3306
+    networks:
+      - network-service
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin-service
+    ports:
+      - "8083:80"
+    environment:
+      PMA_HOST: mysql
+    networks:
+      - network-service
+
+networks:
+  network-service:
+    driver: bridge
