@@ -3,7 +3,7 @@ services:
     build: ./php
     container_name: produk-service
     volumes:
-      - D:\Micro-Service\php:/var/www/html
+      - D:\Micro-Service\php\www:/var/www/html
     ports:
       - "8081:80"
     networks:
