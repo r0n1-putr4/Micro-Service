@@ -3,7 +3,7 @@ services:
     build: ./php
     container_name: produk-service
     volumes:
-      - D:\DockerMI3C\php\www:/var/www/html
+      - D:\Micro-Service\php:/var/www/html
     ports:
       - "8081:80"
     networks:
@@ -16,7 +16,7 @@ services:
     ports:
       - "8082:80"
     volumes:
-      - D:\DockerMI3C\nginx\www:/usr/share/nginx/html
+      - D:\Micro-Service\nginx\www:/usr/share/nginx/html
     restart: always
 
   mysql:
