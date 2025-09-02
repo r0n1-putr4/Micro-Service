@@ -14,7 +14,7 @@ class Review
         ],
         [
             'id' => 2,
-            'produk_id' => 2,
+            'produk_id' => 1,
             'user_id' => 2,
             'rating' => 3,
             'review' => 'Review 2'

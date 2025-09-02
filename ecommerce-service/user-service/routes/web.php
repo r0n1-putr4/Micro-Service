@@ -16,6 +16,3 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-
-
-$router->get('/reviews/{produk_id}', 'ReviewController@getReview');
