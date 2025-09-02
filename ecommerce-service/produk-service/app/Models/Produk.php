@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produk
 {
-    public $list_produk = [
+    public static $list_produk = [
         [
             'id' => 1,
             'name' => 'produk 1',
@@ -28,5 +28,17 @@ class Produk
     public static function all()
     {
         return self::$list_produk;
+    }
+
+    public static function find($id)
+    {
+        
+        foreach (self::$list_produk as $produk) {
+            if ($produk['id'] == $id) {
+                return $produk;
+            }
+        }
+
+        return null;
     }
 }
