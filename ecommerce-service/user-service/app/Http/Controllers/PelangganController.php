@@ -8,7 +8,7 @@ class PelangganController extends Controller
 {
     public function index()
     {
-
+        header('Access-Control-Allow-Origin: *');
         return json_encode([
             'status' => 'success',
             'data' => Pelanggan::all()
@@ -17,6 +17,7 @@ class PelangganController extends Controller
 
     public function show($id)
     {
+        header('Access-Control-Allow-Origin: *');
         return json_encode(['status' => 'success', 'data' => Pelanggan::find($id)]);
     }
 }

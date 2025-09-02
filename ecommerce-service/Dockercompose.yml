@@ -1,0 +1,37 @@
+services:
+  user:
+    build: ./user-service
+    container_name: user-service
+    volumes:
+      - D:\Micro-Service\ecommerce-service\user-service:/var/www/html
+    ports:
+      - "3001:3001"
+    networks:
+      - network-service
+    restart: always
+
+  produk:
+    build: ./produk-service
+    container_name: produk-service
+    volumes:
+      - D:\Micro-Service\ecommerce-service\produk-service:/var/www/html
+    ports:
+      - "3002:3002"
+    networks:
+      - network-service
+    restart: always
+
+  review:
+    build: ./review-service
+    container_name: review-service
+    volumes:
+      - D:\Micro-Service\ecommerce-service\review-service:/var/www/html
+    ports:
+      - "3003:3003"
+    networks:
+      - network-service
+    restart: always
+
+networks:
+  network-service:
+    driver: bridge

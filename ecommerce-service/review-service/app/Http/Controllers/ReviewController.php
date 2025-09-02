@@ -9,7 +9,7 @@ class ReviewController extends Controller
     private $client;
     public function getProduk($produk_id)
     {
-        $this->client = new \GuzzleHttp\Client(['base_uri' => "http://localhost:3001"]);
+        $this->client = new \GuzzleHttp\Client(['base_uri' => "http://host.docker.internal:3002"]);
 
         $url = $produk_id ? "/produk/{$produk_id}" : '/produk';
         $response = $this->client->request('GET', $url);
@@ -19,7 +19,7 @@ class ReviewController extends Controller
     }
 
     public function getPelanggan($pelanggan_id){
-        $this->client = new \GuzzleHttp\Client(['base_uri' => "http://localhost:3003"]);
+        $this->client = new \GuzzleHttp\Client(['base_uri' => "http://host.docker.internal:3001"]);
 
         $url = $pelanggan_id ? "/pelanggan/{$pelanggan_id}" : '/pelanggan';
         $response = $this->client->request('GET', $url);

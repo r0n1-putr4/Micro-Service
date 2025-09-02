@@ -10,6 +10,7 @@ class ProdukController extends Controller
 {
   public function index()
   {
+    header('Access-Control-Allow-Origin: *');
     try {
       $produk = Produk::all();
       return ResponseHelper::successResponse('success', $produk);
@@ -25,6 +26,7 @@ class ProdukController extends Controller
 
   public function show($id)
   {
+    header('Access-Control-Allow-Origin: *');
     try {
       $produk = Produk::find($id);
       if (!$produk) {
