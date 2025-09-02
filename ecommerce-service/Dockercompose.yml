@@ -8,7 +8,7 @@ services:
       - "3001:3001"
     networks:
       - network-service
-    restart: always
+    restart: always    
 
   produk:
     build: ./produk-service
@@ -20,7 +20,7 @@ services:
     networks:
       - network-service
     restart: always
-
+    
   review:
     build: ./review-service
     container_name: review-service

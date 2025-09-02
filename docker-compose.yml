@@ -9,7 +9,6 @@ services:
     networks:
       - network-service
     restart: always
-
   nginx:
     image: nginx
     container_name: nginx-service
@@ -18,7 +17,6 @@ services:
     volumes:
       - D:\Micro-Service\nginx\www:/usr/share/nginx/html
     restart: always
-
   mysql:
     image: mysql
     container_name: mysql-service
