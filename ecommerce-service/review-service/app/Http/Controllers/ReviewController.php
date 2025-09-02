@@ -18,7 +18,15 @@ class ReviewController extends Controller
         return $result['data'];
     }
 
-    
+    public function getPelanggan($pelanggan_id){
+        $this->client = new \GuzzleHttp\Client(['base_uri' => "http://localhost:3003"]);
+
+        $url = $pelanggan_id ? "/pelanggan/{$pelanggan_id}" : '/pelanggan';
+        $response = $this->client->request('GET', $url);
+        $result = json_decode($response->getBody()->getContents(), true);
+
+        return $result['data'];
+    }
 
     public function getReview($produk_id)
     {
@@ -28,6 +36,7 @@ class ReviewController extends Controller
         foreach ($review as $key => $value) {
             if ($value['produk_id'] == $produk_id) {
                 $hasil_review[$key] = $value;
+                $hasil_review[$key]['pelanggan'] = $this->getPelanggan($value['user_id']);
             }
         }
 
