@@ -14,7 +14,7 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return json_encode(["message" => "Service Review"]); //$router->app->version();
 });
 
 
