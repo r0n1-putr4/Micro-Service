@@ -46,4 +46,15 @@ class ReviewController extends Controller
             'data' => $hasil_review
         ]);
     }
+
+    public function getTes($produk_id)
+    {
+        $this->client = new \GuzzleHttp\Client(['base_uri' => "http://host.docker.internal:3002"]);
+
+        $url = $produk_id ? "/produk/{$produk_id}" : '/produk';
+        $response = $this->client->request('GET', $url);
+        $result = json_decode($response->getBody()->getContents(), true);
+
+        return $result['data'];
+    }
 }
