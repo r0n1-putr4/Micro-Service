@@ -19,3 +19,4 @@ $router->get('/', function () use ($router) {
 
 
 $router->get('/reviews/{produk_id}', 'ReviewController@getReview');
+$router->get('/tes/{produk_id}', 'ReviewController@getReviewDua');

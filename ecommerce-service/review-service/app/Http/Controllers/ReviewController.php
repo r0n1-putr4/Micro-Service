@@ -49,12 +49,21 @@ class ReviewController extends Controller
 
     public function getTes($produk_id)
     {
-        $this->client = new \GuzzleHttp\Client(['base_uri' => "http://host.docker.internal:3002"]);
+        $this->client = new \GuzzleHttp\Client(['base_uri' => "http://10.79.176.108:3001"]);
 
-        $url = $produk_id ? "/produk/{$produk_id}" : '/produk';
+        $url = $produk_id ? "/customer/{$produk_id}" : '/customer';
         $response = $this->client->request('GET', $url);
         $result = json_decode($response->getBody()->getContents(), true);
 
         return $result['data'];
+    }
+
+    public function getReviewDua($produk_id)
+    {      
+
+        return json_encode([
+            'status' => 'success',
+            'produk' => $this->getTes($produk_id)
+        ]);
     }
 }
