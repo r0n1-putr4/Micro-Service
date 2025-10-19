@@ -4,7 +4,6 @@ COPY package*.json ./
 RUN npm install
 # Install nodemon secara global agar bisa pakai langsung
 RUN npm install -g nodemon
-COPY . .
 EXPOSE 1001
 
 CMD ["nodemon", "--legacy-watch", "--watch", ".", "app.js"]
