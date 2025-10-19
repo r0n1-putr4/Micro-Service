@@ -42,7 +42,7 @@ connectDB();
 
 // Route contoh
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Customer Service" });
+  res.json({ message: "Customer Service" });
 });
 
 //List Customer
