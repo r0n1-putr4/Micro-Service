@@ -12,11 +12,10 @@ services:
     restart: always
 
   customer:
-    build: ./customer-service
+    build: ./coba-nodeJs
     container_name: customer-service
     volumes:
-      - "D:/Micro-Service/ecommerce-db/customer-service:/app"
-      - /app/node_modules
+      - D:\Micro-Service\ecommerce-db\coba-nodeJs:/app
     ports:
       - "1001:1001"
     networks:
