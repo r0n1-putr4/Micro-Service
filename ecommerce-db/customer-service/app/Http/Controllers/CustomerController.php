@@ -12,13 +12,13 @@ class CustomerController extends Controller
     {
         try {
             return json_encode([
-                'status' => true,
+                'success' => true,
                 'message' => 'List Customer',
                 'data' => Customer::all()
             ]);
         } catch (\Exception $e) {
             return json_encode([
-                'status' => false,
+                'success' => false,
                 'message' => $e->getMessage()
             ]);
         }
@@ -31,21 +31,21 @@ class CustomerController extends Controller
 
             if (!$customer) {
                 return json_encode([
-                    'status' => false,
+                    'success' => false,
                     'message' => 'Customer tidak ditemukan',
                     'data' => null
                 ]);
             }
 
             return json_encode([
-                'status' => true,
+                'success' => true,
                 'message' => 'Detail Customer',
                 'data' => $customer
             ]);
             
         } catch (\Exception $e) {
             return json_encode([
-                'status' => false,
+                'success' => false,
                 'message' => $e->getMessage()
             ]);
         }
@@ -67,14 +67,14 @@ class CustomerController extends Controller
             $customer = Customer::create($validate);
             
             return json_encode([
-                'status' => true,
+                'success' => true,
                 'message' => 'Create Customer',
                 'data' => $customer
             ]);
             
         }catch(\Exception $e){
             return json_encode([
-                'status' => false,
+                'success' => false,
                 'message' => $e->getMessage()
             ]);
         }

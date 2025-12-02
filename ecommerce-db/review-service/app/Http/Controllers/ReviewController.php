@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -20,6 +21,29 @@ class ReviewController extends Controller
         return $result;
     }
 
+    public function getcustomer($customer_id)
+    {
+        $this->client = new \GuzzleHttp\Client(['base_uri' => "http://172.25.163.108:2001"]);
+
+        $url = $customer_id ? "/api/customer/{$customer_id}" : '/api/customer';
+        $response = $this->client->request('GET', $url);
+        $result = json_decode($response->getBody()->getContents(), true);
+
+        return $result;
+    }
+
+    public function index(){
+        try{
+
+            
+        }catch(\Exception $e){
+            return json_encode([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
     public function store(Request $request)
     {
         try {
@@ -33,20 +57,26 @@ class ReviewController extends Controller
             $getProduk = $this->getProduk($validate['product_id']);
             if (!$getProduk['success']) {
                 return json_encode([
-                    'status' => false,
+                    'success' => false,
                     'message' => 'Produk tidak ditemukan',
                 ]);
             }
-            print_r($getProduk);
-            // $review = Review::create($validate);
-            // return json_encode([
-            //     'status' => true,
-            //     'message' => 'Create Review',
-            //     'data' => $review
-            // ]);
+            $getCustomer = $this->getcustomer($validate['customer_id']);
+            if (!$getCustomer['success']) {
+                return json_encode([
+                    'success' => false,
+                    'message' => 'Customer tidak ditemukan',
+                ]);
+            }
+            $review = Review::create($validate);
+            return json_encode([
+                'success' => true,
+                'message' => 'Create Review',
+                'data' => $review
+            ]);
         }catch(\Exception $e){
             return json_encode([
-                'status' => false,
+                'success' => false,
                 'message' => $e->getMessage()
             ]);
         }
