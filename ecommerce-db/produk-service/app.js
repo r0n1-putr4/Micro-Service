@@ -56,7 +56,7 @@ app.get("/produk/:id", async (req, res) => {
     const item = await Produk.findByPk(id);
 
     if (!item) {
-      return errorResponse(res, 404, "Produk Not Found");
+      return errorResponse(res, 200, "Produk Not Found");
     }
     successResponse(res, "Produk Retrieved Successfully", item);
   } catch (error) {
@@ -151,7 +151,7 @@ app.delete("/produk/:id", async (req, res) => {
     const id = parseInt(req.params.id);
     const item = await Produk.findByPk(id);
     if (!item) {
-      return errorResponse(res, 404, "Produk Not Found");
+      return errorResponse(res, 200, "Produk Not Found");
     }
     await item.destroy();
     successResponse(res, "Product Deleted");
