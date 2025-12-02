@@ -27,11 +27,22 @@ class CustomerController extends Controller
     public function show($id)
     {
         try {
+            $customer = Customer::find($id);
+
+            if (!$customer) {
+                return json_encode([
+                    'status' => false,
+                    'message' => 'Customer tidak ditemukan',
+                    'data' => null
+                ]);
+            }
+
             return json_encode([
                 'status' => true,
                 'message' => 'Detail Customer',
-                'data' => Customer::find($id)
+                'data' => $customer
             ]);
+            
         } catch (\Exception $e) {
             return json_encode([
                 'status' => false,

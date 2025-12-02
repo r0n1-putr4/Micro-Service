@@ -57,7 +57,7 @@ services:
     build: ./customer-service #Nama Folder
     container_name: customer-service
     volumes:
-      - D:\DockerMI3C\eccomerce-db\customer-service:/var/www/html
+      - D:\Micro-Service\ecommerce-db\customer-service:/var/www/html
     ports:
       - "2001:2001"
     networks:
