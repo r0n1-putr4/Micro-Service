@@ -12,7 +12,7 @@ class ReviewController extends Controller
 
     public function getProduk($produk_id)
     {
-        $this->client = new \GuzzleHttp\Client(['base_uri' => "http://172.25.163.108:1001"]);
+        $this->client = new \GuzzleHttp\Client(['base_uri' => "http://host.docker.internal:1001"]);
 
         $url = $produk_id ? "/produk/{$produk_id}" : '/produk';
         $response = $this->client->request('GET', $url);
@@ -23,7 +23,7 @@ class ReviewController extends Controller
 
     public function getcustomer($customer_id)
     {
-        $this->client = new \GuzzleHttp\Client(['base_uri' => "http://172.25.163.108:2001"]);
+        $this->client = new \GuzzleHttp\Client(['base_uri' => "http://host.docker.internal:2001"]);
 
         $url = $customer_id ? "/api/customer/{$customer_id}" : '/api/customer';
         $response = $this->client->request('GET', $url);
@@ -32,11 +32,25 @@ class ReviewController extends Controller
         return $result;
     }
 
-    public function index(){
-        try{
+    public function index($produk_id)
+    {
+        try {
 
-            
-        }catch(\Exception $e){
+            $review = Review::where('product_id', $produk_id)->get();;
+            $hasil_review = [];
+
+            foreach ($review as $key => $value) {
+                $hasil_review[$key] = $value;
+                $data_customer = $this->getcustomer($value['customer_id']);
+                $hasil_review[$key]['customer'] = $data_customer['data'];
+            }
+
+            return json_encode([
+                'status' => 'success',
+                // 'produk' => $this->getProduk($produk_id),
+                'data' => $hasil_review
+            ]);
+        } catch (\Exception $e) {
             return json_encode([
                 'success' => false,
                 'message' => $e->getMessage()
@@ -74,12 +88,11 @@ class ReviewController extends Controller
                 'message' => 'Create Review',
                 'data' => $review
             ]);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return json_encode([
                 'success' => false,
                 'message' => $e->getMessage()
             ]);
         }
     }
-
 }

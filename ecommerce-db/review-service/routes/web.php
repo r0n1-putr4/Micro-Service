@@ -18,3 +18,4 @@ $router->get('/', function () use ($router) {
 });
 
 $router->post('/review', 'ReviewController@store');
+$router->get('/review/{produk_id}', 'ReviewController@index');
